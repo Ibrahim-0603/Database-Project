@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.database_gui.GUI_Classes.BusTimeslotController">
+   <children>
+      <TableView fx:id="table" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0">
+        <columns>
+          <TableColumn fx:id="routeCol" prefWidth="75.0" text="Route Name" />
+          <TableColumn fx:id="dayCol" prefWidth="75.0" text="Day of Week" />
+            <TableColumn fx:id="timeCol" prefWidth="75.0" text="Time Slot" />
+            <TableColumn fx:id="numStudentsCol" prefWidth="75.0" text="Number of Students" />
+            <TableColumn fx:id="bigCol" prefWidth="75.0" text="Big Buses" />
+            <TableColumn fx:id="medCol" prefWidth="75.0" text="Medium Buses" />
+            <TableColumn fx:id="baseCol" prefWidth="75.0" text="Base Buses" />
+            <TableColumn fx:id="extraCol" prefWidth="75.0" text="Spare Bus" />
+        </columns>
+      </TableView>
+      <Button mnemonicParsing="false" onAction="#goBack" text="Back" />
+   </children>
+</VBox>
