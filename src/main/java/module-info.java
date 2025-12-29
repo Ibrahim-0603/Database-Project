@@ -6,6 +6,7 @@ module com.example.database_gui {
     requires javafx.base;
     requires java.compiler;
     requires javafx.graphics;
+    requires java.desktop;
 
 
     exports com.example.database_gui;

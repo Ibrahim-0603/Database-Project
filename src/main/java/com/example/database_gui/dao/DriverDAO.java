@@ -38,4 +38,30 @@ public class DriverDAO {
 
         return drivers;
     }
+    public void insertDriver(Driver driver) {
+        String sql = "INSERT INTO Driver (DriverID, Name, LicenseNumber) VALUES (?, ?, ?)";
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setString(1, driver.getId());
+            stmt.setString(2, driver.getName());
+            stmt.setString(3, driver.getLicenseNum());
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            throw new DatabaseException("Could not insert driver", e);
+        }
+    }
+
+    public void deleteDriver(Driver driver) {
+        String sql = "DELETE FROM Driver WHERE DriverID = ? AND Name = ? AND LicenseNumber = ?";
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setString(1, driver.getId());
+            stmt.setString(2, driver.getName());
+            stmt.setString(3, driver.getLicenseNum());
+            int deletedCount = stmt.executeUpdate();
+            if (deletedCount == 0) throw new DatabaseException("No matching driver found");
+        } catch (SQLException e) {
+            throw new DatabaseException("Failed to delete driver", e);
+        }
+    }
 }

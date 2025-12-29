@@ -35,4 +35,29 @@ public class DriverPhoneDAO {
 
         return phoneNumbers;
     }
+
+    public void insertPhone(DriverPhone dp) {
+        String sql = "INSERT INTO DriverPhone (driverID, phoneNumber) VALUES (?, ?)";
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setString(1, dp.getDriverID());
+            stmt.setString(2, dp.getPhoneNumber());
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            throw new DatabaseException("Could not insert phone number", e);
+        }
+    }
+
+    public void deletePhone(DriverPhone dp) {
+        String sql = "DELETE FROM DriverPhone WHERE driverID = ? AND phoneNumber = ?";
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setString(1, dp.getDriverID());
+            stmt.setString(2, dp.getPhoneNumber());
+            int deletedCount = stmt.executeUpdate();
+            if (deletedCount == 0) throw new DatabaseException("No matching record found");
+        } catch (SQLException e) {
+            throw new DatabaseException("Failed to delete phone number", e);
+        }
+    }
 }

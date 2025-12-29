@@ -36,4 +36,29 @@ public class MaintenanceDatesDAO {
 
         return dates;
     }
+
+    public void insertMaintenanceDate(MaintenanceDates md) {
+        String sql = "INSERT INTO busMaintenance (BusID, MaintenanceDate) VALUES (?, ?)";
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setString(1, md.getBusID());
+            stmt.setDate(2, java.sql.Date.valueOf(md.getMaintenanceDate()));
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            throw new DatabaseException("Could not insert maintenance date", e);
+        }
+    }
+
+    public void deleteMaintenanceDate(MaintenanceDates md) {
+        String sql = "DELETE FROM busMaintenance WHERE BusID = ? AND MaintenanceDate = ?";
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setString(1, md.getBusID());
+            stmt.setDate(2, java.sql.Date.valueOf(md.getMaintenanceDate()));
+            int deletedCount = stmt.executeUpdate();
+            if (deletedCount == 0) throw new DatabaseException("No matching record found");
+        } catch (SQLException e) {
+            throw new DatabaseException("Failed to delete maintenance record", e);
+        }
+    }
 }

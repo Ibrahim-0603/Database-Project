@@ -36,4 +36,29 @@ public class StudentPhoneDAO {
 
         return phoneNumbers;
     }
+
+    public void insertPhone(StudentPhone sp) {
+        String sql = "INSERT INTO StudentPhone (studentID, phoneNumber) VALUES (?, ?)";
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setString(1, sp.getStudentID());
+            stmt.setString(2, sp.getPhoneNum());
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            throw new DatabaseException("Could not insert phone number", e);
+        }
+    }
+
+    public void deletePhone(StudentPhone sp) {
+        String sql = "DELETE FROM StudentPhone WHERE studentID = ? AND phoneNumber = ?";
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setString(1, sp.getStudentID());
+            stmt.setString(2, sp.getPhoneNum());
+            int deletedCount = stmt.executeUpdate();
+            if (deletedCount == 0) throw new DatabaseException("No matching record found");
+        } catch (SQLException e) {
+            throw new DatabaseException("Failed to delete phone number", e);
+        }
+    }
 }

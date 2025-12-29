@@ -41,4 +41,35 @@ public class StudentScheduleDAO {
 
         return schedules;
     }
+
+    public void insertSchedule(StudentSchedule schedule) {
+        String sql = "INSERT INTO StudentSchedule (scheduleID, studentID, dayOfWeek, firstClassTime, lastClassTime) VALUES (?, ?, ?, ?, ?)";
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setString(1, schedule.getScheduleID());
+            stmt.setString(2, schedule.getStudentID());
+            stmt.setString(3, schedule.getDayOfWeek());
+            stmt.setTime(4, java.sql.Time.valueOf(schedule.getFirstClassTime()));
+            stmt.setTime(5, java.sql.Time.valueOf(schedule.getLastClassTime()));
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            throw new DatabaseException("Could not insert schedule", e);
+        }
+    }
+
+    public void deleteSchedule(StudentSchedule schedule) {
+        String sql = "DELETE FROM StudentSchedule WHERE scheduleID = ? AND studentID = ? AND dayOfWeek = ? AND firstClassTime = ? AND lastClassTime = ?";
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setString(1, schedule.getScheduleID());
+            stmt.setString(2, schedule.getStudentID());
+            stmt.setString(3, schedule.getDayOfWeek());
+            stmt.setTime(4, java.sql.Time.valueOf(schedule.getFirstClassTime()));
+            stmt.setTime(5, java.sql.Time.valueOf(schedule.getLastClassTime()));
+            int deletedCount = stmt.executeUpdate();
+            if (deletedCount == 0) throw new DatabaseException("No matching schedule found");
+        } catch (SQLException e) {
+            throw new DatabaseException("Failed to delete schedule", e);
+        }
+    }
 }

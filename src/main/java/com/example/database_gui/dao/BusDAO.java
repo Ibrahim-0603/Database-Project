@@ -39,4 +39,36 @@ public class BusDAO {
 
         return buses;
     }
+
+    public void insertBus(Bus bus) {
+        String sql = "INSERT INTO Bus (BusID, PlateNumber, Model, Capacity, RouteID) VALUES (?, ?, ?, ?, ?)";
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setString(1, bus.getBusID());
+            stmt.setString(2, bus.getPlateNum());
+            stmt.setString(3, bus.getModel());
+            stmt.setInt(4, bus.getCapacity());
+            stmt.setString(5, bus.getRouteID());
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            throw new DatabaseException("Could not insert bus", e);
+        }
+    }
+
+    public void deleteBus(Bus bus) {
+        String sql = "DELETE FROM Bus WHERE BusID = ? AND PlateNumber = ? AND Model = ? AND Capacity = ? AND RouteID = ?";
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setString(1, bus.getBusID());
+            stmt.setString(2, bus.getPlateNum());
+            stmt.setString(3, bus.getModel());
+            stmt.setInt(4, bus.getCapacity());
+            stmt.setString(5, bus.getRouteID());
+            int deletedCount = stmt.executeUpdate();
+            if (deletedCount == 0) throw new DatabaseException("No matching bus found");
+        } catch (SQLException e) {
+            throw new DatabaseException("Failed to delete bus", e);
+        }
+    }
+
 }

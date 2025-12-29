@@ -63,4 +63,31 @@ public class DriverBusAssignmentDAO {
 
         return assignments;
     }
+
+    public void insertAssignment(DriverBusAssignment assignment) {
+        String sql = "INSERT INTO DriverBusAssignment (driverID, busID, shift) VALUES (?, ?, ?)";
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setString(1, assignment.getDriverID());
+            stmt.setString(2, assignment.getBusID());
+            stmt.setString(3, assignment.getShift());
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            throw new DatabaseException("Could not insert assignment", e);
+        }
+    }
+
+    public void deleteAssignment(DriverBusAssignment assignment) {
+        String sql = "DELETE FROM DriverBusAssignment WHERE driverID = ? AND busID = ? AND shift = ?";
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setString(1, assignment.getDriverID());
+            stmt.setString(2, assignment.getBusID());
+            stmt.setString(3, assignment.getShift());
+            int deletedCount = stmt.executeUpdate();
+            if (deletedCount == 0) throw new DatabaseException("No matching assignment found");
+        } catch (SQLException e) {
+            throw new DatabaseException("Failed to delete assignment", e);
+        }
+    }
 }

@@ -39,4 +39,33 @@ public class StopsDAO {
 
         return stops;
     }
+
+    public void insertStop(Stops stop) {
+        String sql = "INSERT INTO Stop (StopID, StopName, Location, RouteID) VALUES (?, ?, ?, ?)";
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setString(1, stop.getStopID());
+            stmt.setString(2, stop.getStopName());
+            stmt.setString(3, stop.getLocation());
+            stmt.setString(4, stop.getRouteID());
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            throw new DatabaseException("Could not insert stop", e);
+        }
+    }
+
+    public void deleteStop(Stops stop) {
+        String sql = "DELETE FROM Stop WHERE StopID = ? AND StopName = ? AND Location = ? AND RouteID = ?";
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setString(1, stop.getStopID());
+            stmt.setString(2, stop.getStopName());
+            stmt.setString(3, stop.getLocation());
+            stmt.setString(4, stop.getRouteID());
+            int deletedCount = stmt.executeUpdate();
+            if (deletedCount == 0) throw new DatabaseException("No matching stop found");
+        } catch (SQLException e) {
+            throw new DatabaseException("Failed to delete stop", e);
+        }
+    }
 }

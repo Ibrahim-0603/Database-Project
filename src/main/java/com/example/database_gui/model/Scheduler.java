@@ -10,6 +10,6 @@ public interface Scheduler {
     LocalTime getEndTime();
 
     default long getDuration(){
-        return Duration.between(getEndTime(), getStartTime()).toMinutes();
+        return Duration.between(getStartTime(), getEndTime()).toMinutes();
     }
 }
