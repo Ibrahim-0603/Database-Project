@@ -11,7 +11,7 @@
         <TextField fx:id="plateInput" layoutX="185.0" layoutY="126.0" />
         <TextField fx:id="modelInput" layoutX="185.0" layoutY="187.0" />
         <Button layoutX="31.0" layoutY="342.0" mnemonicParsing="false" onAction="#handleAdd" text="ADD" />
-        <Button layoutX="518.0" layoutY="342.0" mnemonicParsing="false" onAction="#handleDelete" text="DELETE" />
+        <Button layoutX="273.0" layoutY="342.0" mnemonicParsing="false" onAction="#handleDelete" text="DELETE" />
         <Label layoutX="96.0" layoutY="69.0" text="BUS ID" />
         <Label layoutX="89.0" layoutY="130.0" text="PLATE NO." />
         <Label layoutX="89.0" layoutY="191.0" text="MODEL" />
@@ -19,5 +19,6 @@
         <Label layoutX="90.0" layoutY="305.0" text="ROUTE ID" />
         <TextField fx:id="capInput" layoutX="185.0" layoutY="246.0" />
         <TextField fx:id="routeInput" layoutX="185.0" layoutY="301.0" />
+      <Button layoutX="530.0" layoutY="342.0" mnemonicParsing="false" onAction="#goBack" text="Back" />
     </children>
 </AnchorPane>

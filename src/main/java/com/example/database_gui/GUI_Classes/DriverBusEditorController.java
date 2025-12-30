@@ -1,5 +1,6 @@
 package com.example.database_gui.GUI_Classes;
 
+import com.example.database_gui.Exceptions.ValidationException;
 import com.example.database_gui.dao.BusDAO;
 import com.example.database_gui.dao.DriverBusAssignmentDAO;
 import com.example.database_gui.dao.DriverDAO;
@@ -12,6 +13,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 
+import java.io.IOException;
 import java.util.stream.Collectors;
 
 public class DriverBusEditorController extends BaseController {
@@ -26,12 +28,10 @@ public class DriverBusEditorController extends BaseController {
     @FXML
     public void initialize() {
         try {
-            // Populate Driver IDs
             driverIdCombo.setItems(FXCollections.observableArrayList(
                     driverDAO.getAllDrivers().stream().map(Driver::getId).collect(Collectors.toList())
             ));
 
-            // Populate Bus IDs
             busIdCombo.setItems(FXCollections.observableArrayList(
                     busDAO.getAllBuses().stream().map(Bus::getBusID).collect(Collectors.toList())
             ));
@@ -42,7 +42,9 @@ public class DriverBusEditorController extends BaseController {
     @FXML
     private void handleAdd(ActionEvent event) {
         try {
-            // Get values from ComboBox selection
+            validateInput(driverIdCombo, busIdCombo);
+            validateInput(shiftInput);
+
             DriverBusAssignment dba = new DriverBusAssignment(
                     driverIdCombo.getValue(),
                     busIdCombo.getValue(),
@@ -50,14 +52,21 @@ public class DriverBusEditorController extends BaseController {
             );
             dao.insertAssignment(dba);
             switchScene("driverBusTable.fxml", event);
-        } catch (Exception e) {
+        } catch (ValidationException e) {
             showDatabaseError("Insertion failed", e);
+        } catch (IOException e){
+            showDatabaseError("Failed to load scene", e);
+        } catch (Exception e){
+            showDatabaseError(e);
         }
     }
 
     @FXML
     private void handleDelete(ActionEvent event) {
         try {
+            validateInput(driverIdCombo, busIdCombo);
+            validateInput(shiftInput);
+
             DriverBusAssignment dba = new DriverBusAssignment(
                     driverIdCombo.getValue(),
                     busIdCombo.getValue(),
@@ -65,8 +74,12 @@ public class DriverBusEditorController extends BaseController {
             );
             dao.deleteAssignment(dba);
             switchScene("driverBusTable.fxml", event);
-        } catch (Exception e) {
+        } catch (ValidationException e) {
             showDatabaseError("Delete failed", e);
+        } catch (IOException e){
+            showDatabaseError("Failed to load scene", e);
+        } catch (Exception e){
+            showDatabaseError(e);
         }
     }
 }

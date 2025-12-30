@@ -99,6 +99,6 @@ public class driverBusController extends BaseController{
 
     @FXML
     protected void handleEditButton(ActionEvent event){
-        this.switchScene("driverBusTable.fxml", event);
+        this.switchScene("driverBusTableOptions.fxml", event);
     }
 }

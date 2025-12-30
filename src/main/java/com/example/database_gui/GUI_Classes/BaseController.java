@@ -1,5 +1,6 @@
 package com.example.database_gui.GUI_Classes;
 
+import com.example.database_gui.Exceptions.ValidationException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -7,6 +8,8 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -24,11 +27,26 @@ public abstract class BaseController {
         showDatabaseError("Error", e);
     }
 
+    protected void validateInput(TextField... fields) throws ValidationException {
+        for (TextField field : fields) {
+            if (field.getText() == null || field.getText().trim().isEmpty()) {
+                throw new ValidationException("All fields must be filled out!");
+            }
+        }
+    }
+    protected void validateInput(ComboBox<?>... boxes)throws ValidationException{
+        for(ComboBox<?> box : boxes){
+            if(box.getValue()==null){
+                throw new ValidationException("Please make a selection in all dropdowns!");
+            }
+        }
+    }
+
     @FXML
     protected void goBack(ActionEvent event) {
         try {
             Parent root = FXMLLoader.load(
-                    getClass().getResource("/com/example/database_gui/fxml/Main.fxml")
+                    getClass().getResource("/com/example/database_gui/fxml/Main_Islam.fxml")
             );
 
             Stage stage = (Stage) ((Node) event.getSource())

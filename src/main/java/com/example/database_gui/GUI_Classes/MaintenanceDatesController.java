@@ -57,7 +57,7 @@ public class MaintenanceDatesController extends BaseController {
 
     @FXML
     protected void handleEditButton(ActionEvent event){
-        this.switchScene("MaintenanceDatesTableOptions.fxml", event);
+        this.switchScene("MaintenanceDateTableOptions.fxml", event);
     }
 
 }
