@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.TilePane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="550.0" prefWidth="700.0" style="-fx-background-color: #f4f7f6;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.database_gui.GUI_Classes.MainController">
+    <children>
+        <VBox alignment="CENTER" prefHeight="80.0" prefWidth="700.0" style="-fx-background-color: #2C3E50;">
+            <children>
+                <Label text="Admin Control Panel" textFill="WHITE">
+                    <font>
+                        <Font name="Arial Bold" size="24.0" />
+                    </font>
+                </Label>
+                <Label text="Bus Management Database" textFill="#bdc3c7" />
+            </children>
+        </VBox>
+
+        <VBox alignment="CENTER" layoutX="50.0" layoutY="100.0" spacing="20.0">
+            <children>
+                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Select an Entity to Edit (Add/Delete)" textAlignment="CENTER">
+                    <font>
+                        <Font name="System Bold" size="16.0" />
+                    </font>
+                </Text>
+
+                <TilePane alignment="CENTER" hgap="15.0" prefColumns="3" prefHeight="300.0" prefWidth="600.0" vgap="15.0">
+                    <children>
+                        <Button mnemonicParsing="false" onAction="#openStudents" prefHeight="60.0" prefWidth="180.0" text="Students" />
+                        <Button mnemonicParsing="false" onAction="#openRoutes" prefHeight="60.0" prefWidth="180.0" text="Routes" />
+                        <Button mnemonicParsing="false" onAction="#openStops" prefHeight="60.0" prefWidth="180.0" text="Stops" />
+
+                        <Button mnemonicParsing="false" onAction="#openDrivers" prefHeight="60.0" prefWidth="180.0" text="Drivers" />
+                        <Button mnemonicParsing="false" onAction="#openBuses" prefHeight="60.0" prefWidth="180.0" text="Buses" />
+                        <Button mnemonicParsing="false" onAction="#openTrips" prefHeight="60.0" prefWidth="180.0" text="Trips" />
+
+                        <Button mnemonicParsing="false" onAction="#openSchedules" prefHeight="60.0" prefWidth="180.0" text="Schedules" />
+                        <Button mnemonicParsing="false" onAction="#openMaintenanceDates" prefHeight="60.0" prefWidth="180.0" text="Maintenance Dates" />
+                        <Button mnemonicParsing="false" onAction="#openAssignments" prefHeight="60.0" prefWidth="180.0" text="Driver-Bus Assignments" />
+                    </children>
+                </TilePane>
+            </children>
+        </VBox>
+
+        <HBox alignment="CENTER" layoutX="0.0" layoutY="460.0" prefHeight="60.0" prefWidth="700.0" style="-fx-background-color: #ecf0f1; -fx-border-color: #bdc3c7; -fx-border-width: 1 0 0 0;">
+            <children>
+                <Button mnemonicParsing="false" onAction="#openBusesPerTimeSlot" prefHeight="40.0" prefWidth="300.0" style="-fx-background-color: #27ae60; -fx-text-fill: white; -fx-font-weight: bold;" text="Calculate Buses Per Time Slot" />
+            </children>
+        </HBox>
+    </children>
+</AnchorPane>

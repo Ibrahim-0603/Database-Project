@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="321.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.database_gui.GUI_Classes.InputUserController">
+   <children>
+      <Label layoutX="100.0" layoutY="7.0" prefHeight="43.0" prefWidth="400.0" text="Welcome to Bus Database System">
+         <font>
+            <Font name="Arial Bold" size="24.0" />
+         </font>
+      </Label>
+      <VBox layoutX="140.0" layoutY="61.0" prefHeight="194.0" prefWidth="318.0" spacing="10.0" style="-fx-background-color: white; -fx-padding: 20; -fx-background-radius: 5; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 10, 0, 0, 0);">
+         <children>
+            <Label text="Username:" />
+            <TextField fx:id="userText" prefHeight="26.0" promptText="e.g. admin" />
+            <Label text="Password:" />
+            <PasswordField fx:id="passText" prefHeight="26.0" prefWidth="226.0" promptText="e.g. admin123" />
+            <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleLogin" prefHeight="26.0" style="-fx-background-color: #2196F3; -fx-text-fill: white; -fx-font-weight: bold;" text="Login" textAlignment="CENTER" />
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>
