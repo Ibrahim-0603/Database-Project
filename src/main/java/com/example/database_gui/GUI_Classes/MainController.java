@@ -12,6 +12,15 @@ import java.io.IOException;
 
 public class MainController extends BaseController {
 
+    @Override
+    protected void switchScene(String fxmlFile, ActionEvent event) {
+        try {
+            super.switchScene(fxmlFile, event);
+        } catch (IOException e) {
+            showDatabaseError("Cannot show scene", e);
+        }
+    }
+
     @FXML
     private void openStudents(ActionEvent event) {
 

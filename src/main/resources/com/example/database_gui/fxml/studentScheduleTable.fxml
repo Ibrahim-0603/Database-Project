@@ -4,6 +4,7 @@
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
 <VBox xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.database_gui.GUI_Classes.StudentScheduleController">
@@ -18,6 +19,11 @@
             <TableColumn fx:id="LCTCol" prefWidth="75.0" text="Last Class Time" />
         </columns>
       </TableView>
-      <Button mnemonicParsing="false" onAction="#goBack" text="Back" />
+      <HBox spacing="520.0">
+         <children>
+            <Button mnemonicParsing="false" onAction="#goBack" text="Back" />
+            <Button mnemonicParsing="false" onAction="#handleEditButton" text="Edit" />
+         </children>
+      </HBox>
    </children>
 </VBox>

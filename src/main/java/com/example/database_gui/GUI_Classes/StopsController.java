@@ -45,4 +45,18 @@ public class StopsController extends BaseController {
             showDatabaseError("Could not show stops", e);
         }
     }
+    @Override
+    protected void switchScene(String fxmlFile, ActionEvent event) {
+        try {
+            super.switchScene(fxmlFile, event);
+        }
+        catch (IOException e){
+            showDatabaseError("Cannot open editor", e);
+        }
+    }
+
+    @FXML
+    protected void handleEditButton(ActionEvent event){
+        this.switchScene("StopsTableOptions.fxml", event);
+    }
 }

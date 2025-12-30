@@ -17,7 +17,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class RouteController {
+public class RouteController extends BaseController {
 
     @FXML
     private TableView<Route> routeTable;
@@ -48,25 +48,18 @@ public class RouteController {
 
         routeTable.setItems(routes);
     }
-
-    @FXML
-    private void goBack(ActionEvent event) {
+    @Override
+    protected void switchScene(String fxmlFile, ActionEvent event) {
         try {
-            Parent root = FXMLLoader.load(
-                    getClass().getResource("/com/example/database_gui/fxml/Main.fxml")
-            );
-
-            Stage stage = (Stage) ((Node) event.getSource())
-                    .getScene()
-                    .getWindow();
-
-            stage.setScene(new Scene(root));
-            stage.show();
-
-        } catch (IOException e) {
-            e.printStackTrace();
+            super.switchScene(fxmlFile, event);
+        }
+        catch (IOException e){
+            showDatabaseError("Cannot open editor", e);
         }
     }
 
-
+    @FXML
+    protected void handleEditButton(ActionEvent event){
+        this.switchScene("RouteTableOptions.fxml", event);
+    }
 }

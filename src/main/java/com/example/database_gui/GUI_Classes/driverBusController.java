@@ -6,11 +6,14 @@ import com.example.database_gui.dao.DriverBusAssignmentDAO;
 import com.example.database_gui.dao.DriverDAO;
 import com.example.database_gui.model.DriverBusAssignment;
 import javafx.collections.FXCollections;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+
+import java.io.IOException;
 
 public class driverBusController extends BaseController{
     @FXML
@@ -82,5 +85,20 @@ public class driverBusController extends BaseController{
     private void loadBusIDs() {
         busBox.setItems(
                 FXCollections.observableArrayList(busDAO.getAllBuses().stream().map(bus -> bus.getBusID()).toList()));
+    }
+
+    @Override
+    protected void switchScene(String fxmlFile, ActionEvent event) {
+        try {
+        super.switchScene(fxmlFile, event);
+        }
+        catch (IOException e){
+            showDatabaseError("Cannot open editor", e);
+        }
+    }
+
+    @FXML
+    protected void handleEditButton(ActionEvent event){
+        this.switchScene("driverBusTable.fxml", event);
     }
 }

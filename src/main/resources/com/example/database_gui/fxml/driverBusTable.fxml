@@ -9,7 +9,7 @@
 
 <VBox xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.database_gui.GUI_Classes.driverBusController">
    <children>
-      <HBox prefHeight="100.0" prefWidth="200.0">
+      <HBox prefHeight="0.0" prefWidth="603.0">
          <children>
             <ComboBox fx:id="driverBox" prefWidth="150.0" promptText="DriverIDs" />
             <ComboBox fx:id="busBox" prefWidth="150.0" promptText="BusIDs" />
@@ -22,6 +22,11 @@
             <TableColumn fx:id="shiftCol" prefWidth="75.0" text="Shift" />
         </columns>
       </TableView>
-      <Button mnemonicParsing="false" onAction="#goBack" text="Back" />
+      <HBox spacing="520.0">
+         <children>
+            <Button mnemonicParsing="false" onAction="#goBack" text="Back" />
+            <Button mnemonicParsing="false" onAction="#handleEditButton" text="Edit" />
+         </children>
+      </HBox>
    </children>
 </VBox>

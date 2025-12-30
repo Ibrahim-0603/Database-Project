@@ -42,13 +42,9 @@ public abstract class BaseController {
             e.printStackTrace();
         }
     }
-    protected void switchScene(String fxmlFile, ActionEvent event) {
-        try {
-            Parent root = FXMLLoader.load(getClass().getResource("/com/example/database_gui/fxml/" + fxmlFile));
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setScene(new Scene(root));
-        } catch (IOException e) {
-            showDatabaseError("Could not open editor", e);
-        }
+    protected void switchScene(String fxmlFile, ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("/com/example/database_gui/fxml/" + fxmlFile));
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(new Scene(root));
     }
 }
