@@ -32,7 +32,7 @@ public class DriverController extends BaseController{
     private final DriverDAO driverDAO = new DriverDAO();
 
     @FXML
-    private  void initialize(){
+    public  void initialize(){
         idCol.setCellValueFactory(new PropertyValueFactory<>("Id"));
         nameCol.setCellValueFactory(new PropertyValueFactory<>("Name"));
         numCol.setCellValueFactory(new PropertyValueFactory<>("LicenseNum"));

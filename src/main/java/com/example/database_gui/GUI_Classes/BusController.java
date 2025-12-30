@@ -32,7 +32,7 @@ public class BusController extends BaseController {
     private final BusDAO busDAO = new BusDAO();
 
     @FXML
-    public void initialize(){
+    public void initialize() {
         idCol.setCellValueFactory(new PropertyValueFactory<>("busID"));
         PlateCol.setCellValueFactory(new PropertyValueFactory<>("plateNum"));
         ModelCol.setCellValueFactory(new PropertyValueFactory<>("model"));
@@ -55,14 +55,13 @@ public class BusController extends BaseController {
     protected void switchScene(String fxmlFile, ActionEvent event) {
         try {
             super.switchScene(fxmlFile, event);
-        }
-        catch (IOException e){
+        } catch (IOException e) {
             showDatabaseError("Cannot open editor", e);
         }
     }
 
     @FXML
-    protected void handleEditButton(ActionEvent event){
+    protected void handleEditButton(ActionEvent event) {
         this.switchScene("BusTableOptions.fxml", event);
     }
 }

@@ -13,6 +13,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.Objects;
 
 public abstract class BaseController {
 
@@ -46,7 +47,7 @@ public abstract class BaseController {
     protected void goBack(ActionEvent event) {
         try {
             Parent root = FXMLLoader.load(
-                    getClass().getResource("/com/example/database_gui/fxml/Main_Islam.fxml")
+                    Objects.requireNonNull(getClass().getResource("/com/example/database_gui/fxml/Main_Islam.fxml"))
             );
 
             Stage stage = (Stage) ((Node) event.getSource())
@@ -61,7 +62,7 @@ public abstract class BaseController {
         }
     }
     protected void switchScene(String fxmlFile, ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/com/example/database_gui/fxml/" + fxmlFile));
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/com/example/database_gui/fxml/" + fxmlFile)));
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setScene(new Scene(root));
     }

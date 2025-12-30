@@ -12,6 +12,8 @@
         <TextField fx:id="busIdInput" layoutX="183.0" layoutY="132.0" />
         <Button layoutX="36.0" layoutY="357.0" mnemonicParsing="false" onAction="#handleAdd" text="ADD" />
         <Button layoutX="515.0" layoutY="357.0" mnemonicParsing="false" onAction="#handleDelete" text="DELETE" />
+        <Button layoutX="280.0" layoutY="355.0" mnemonicParsing="false" onAction="#goBack" text="Back" />
+
         <Label layoutX="91.0" layoutY="57.0" text="Trip Number" />
         <Label layoutX="91.0" layoutY="99.0" text="RouteID" />
         <Label layoutX="91.0" layoutY="145.0" text="BusID" />

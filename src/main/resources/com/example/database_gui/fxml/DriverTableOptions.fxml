@@ -9,6 +9,8 @@
     <children>
         <Button layoutX="24.0" layoutY="355.0" mnemonicParsing="false" onAction="#handleAdd" text="ADD" />
         <Button layoutX="517.0" layoutY="355.0" mnemonicParsing="false" onAction="#handleDelete" text="DELETE" />
+        <Button layoutX="280.0" layoutY="355.0" mnemonicParsing="false" onAction="#goBack" text="Back" />
+
         <Label layoutX="118.0" layoutY="87.0" text="DriverID" />
         <Label layoutX="118.0" layoutY="162.0" text="Name" />
         <TextField fx:id="idInput" layoutX="218.0" layoutY="83.0" />

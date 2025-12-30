@@ -9,6 +9,8 @@
     <children>
         <Button layoutX="22.0" layoutY="361.0" mnemonicParsing="false" onAction="#handleAdd" text="ADD" />
         <Button layoutX="525.0" layoutY="361.0" mnemonicParsing="false" onAction="#handleDelete" text="DELETE" />
+        <Button layoutX="280.0" layoutY="355.0" mnemonicParsing="false" onAction="#goBack" text="Back" />
+
         <Label layoutX="128.0" layoutY="69.0" text="StudentID" />
         <Label layoutX="125.0" layoutY="123.0" text="ScheduleID" />
         <Label layoutX="121.0" layoutY="179.0" text="Day of Week" />
