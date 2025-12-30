@@ -15,7 +15,7 @@ public class StopsEditorController extends BaseController {
         try {
             Stops s = new Stops(stopIdInput.getText(), nameInput.getText(), locationInput.getText(), routeIdInput.getText());
             dao.insertStop(s);
-            openEditor(event, "stopsTable.fxml");
+            switchScene("stopsTable.fxml", event);
         } catch (Exception e) {
             showDatabaseError("Insertion failed", e);
         }
@@ -26,7 +26,7 @@ public class StopsEditorController extends BaseController {
         try {
             Stops s = new Stops(stopIdInput.getText(), nameInput.getText(), locationInput.getText(), routeIdInput.getText());
             dao.deleteStop(s);
-            openEditor(event, "stopsTable.fxml");
+            switchScene("stopsTable.fxml", event);
         } catch (Exception e) {
             showDatabaseError("Delete failed", e);
         }

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.database_gui.GUI_Classes.StudentScheduleEditorController">
+    <children>
+        <Button layoutX="22.0" layoutY="361.0" mnemonicParsing="false" onAction="#handleAdd" text="ADD" />
+        <Button layoutX="525.0" layoutY="361.0" mnemonicParsing="false" onAction="#handleDelete" text="DELETE" />
+        <Label layoutX="128.0" layoutY="69.0" text="StudentID" />
+        <Label layoutX="125.0" layoutY="123.0" text="ScheduleID" />
+        <Label layoutX="121.0" layoutY="179.0" text="Day of Week" />
+        <Label layoutX="114.0" layoutY="236.0" text="First Class Time" />
+        <Label layoutX="115.0" layoutY="288.0" text="Last Class Time" />
+        <TextField fx:id="studentIdInput" layoutX="226.0" layoutY="65.0" />
+        <TextField fx:id="scheduleIdInput" layoutX="225.0" layoutY="119.0" />
+        <TextField fx:id="dayInput" layoutX="226.0" layoutY="175.0" prefHeight="25.0" prefWidth="149.0" />
+      <TextField fx:id="firstClassInput" layoutX="225.0" layoutY="232.0" prefHeight="25.0" prefWidth="149.0" />
+      <TextField fx:id="lastClassInput" layoutX="225.0" layoutY="284.0" />
+    </children>
+</AnchorPane>

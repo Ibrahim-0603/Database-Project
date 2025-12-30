@@ -22,7 +22,7 @@ public class BusPerTimeSlotDAO {
                 "GROUP BY r.RouteName, ss.DayOfWeek, ss.FirstClassTime " +
                 "ORDER BY ss.DayOfWeek, TimeSlot";
 
-        try (Connection conn = DatabaseConnection.getConnection();
+        try (Connection conn = DatabaseConnection.getInstance().getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql);
              ResultSet rs = stmt.executeQuery()) {
 

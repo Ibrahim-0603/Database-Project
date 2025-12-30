@@ -17,6 +17,7 @@ public class BusEditorController extends BaseController {
             Bus b = new Bus(idInput.getText(), plateInput.getText(), modelInput.getText(),
                     Integer.parseInt(capInput.getText()), routeInput.getText());
             busDAO.insertBus(b);
+            switchScene("BusTable.fxml", event);
         } catch (Exception e) {
             showDatabaseError("Insertion failed", e);
         }
@@ -28,6 +29,7 @@ public class BusEditorController extends BaseController {
             Bus b = new Bus(idInput.getText(), plateInput.getText(), modelInput.getText(),
                     Integer.parseInt(capInput.getText()), routeInput.getText());
             busDAO.deleteBus(b);
+            switchScene("BusTable.fxml", event);
         } catch (Exception e) {
             showDatabaseError("Delete failed", e);
         }

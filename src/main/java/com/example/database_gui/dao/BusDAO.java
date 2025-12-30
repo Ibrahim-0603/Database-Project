@@ -17,7 +17,7 @@ public class BusDAO {
         List<Bus> buses = new ArrayList<>();
         String sql = "SELECT * FROM Bus";
 
-        try (Connection conn = DatabaseConnection.getConnection();
+        try (Connection conn = DatabaseConnection.getInstance().getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql);
              ResultSet rs = stmt.executeQuery()) {
 
@@ -42,7 +42,7 @@ public class BusDAO {
 
     public void insertBus(Bus bus) {
         String sql = "INSERT INTO Bus (BusID, PlateNumber, Model, Capacity, RouteID) VALUES (?, ?, ?, ?, ?)";
-        try (Connection conn = DatabaseConnection.getConnection();
+        try (Connection conn = DatabaseConnection.getInstance().getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setString(1, bus.getBusID());
             stmt.setString(2, bus.getPlateNum());
@@ -57,7 +57,7 @@ public class BusDAO {
 
     public void deleteBus(Bus bus) {
         String sql = "DELETE FROM Bus WHERE BusID = ? AND PlateNumber = ? AND Model = ? AND Capacity = ? AND RouteID = ?";
-        try (Connection conn = DatabaseConnection.getConnection();
+        try (Connection conn = DatabaseConnection.getInstance().getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setString(1, bus.getBusID());
             stmt.setString(2, bus.getPlateNum());

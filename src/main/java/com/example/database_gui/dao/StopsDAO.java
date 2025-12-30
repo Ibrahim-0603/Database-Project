@@ -18,7 +18,7 @@ public class StopsDAO {
         List<Stops> stops = new ArrayList<>();
         String sql = "SELECT * FROM Stop";
 
-        try (Connection conn = DatabaseConnection.getConnection();
+        try (Connection conn = DatabaseConnection.getInstance().getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql);
              ResultSet rs = stmt.executeQuery()) {
 
@@ -42,7 +42,7 @@ public class StopsDAO {
 
     public void insertStop(Stops stop) {
         String sql = "INSERT INTO Stop (StopID, StopName, Location, RouteID) VALUES (?, ?, ?, ?)";
-        try (Connection conn = DatabaseConnection.getConnection();
+        try (Connection conn = DatabaseConnection.getInstance().getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setString(1, stop.getStopID());
             stmt.setString(2, stop.getStopName());
@@ -56,7 +56,7 @@ public class StopsDAO {
 
     public void deleteStop(Stops stop) {
         String sql = "DELETE FROM Stop WHERE StopID = ? AND StopName = ? AND Location = ? AND RouteID = ?";
-        try (Connection conn = DatabaseConnection.getConnection();
+        try (Connection conn = DatabaseConnection.getInstance().getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setString(1, stop.getStopID());
             stmt.setString(2, stop.getStopName());

@@ -18,7 +18,7 @@ public class DriverDAO {
         List<Driver> drivers = new ArrayList<>();
         String sql = "SELECT * FROM Driver";
 
-        try (Connection conn = DatabaseConnection.getConnection();
+        try (Connection conn = DatabaseConnection.getInstance().getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql);
              ResultSet rs = stmt.executeQuery()) {
 
@@ -40,7 +40,7 @@ public class DriverDAO {
     }
     public void insertDriver(Driver driver) {
         String sql = "INSERT INTO Driver (DriverID, Name, LicenseNumber) VALUES (?, ?, ?)";
-        try (Connection conn = DatabaseConnection.getConnection();
+        try (Connection conn = DatabaseConnection.getInstance().getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setString(1, driver.getId());
             stmt.setString(2, driver.getName());
@@ -53,7 +53,7 @@ public class DriverDAO {
 
     public void deleteDriver(Driver driver) {
         String sql = "DELETE FROM Driver WHERE DriverID = ? AND Name = ? AND LicenseNumber = ?";
-        try (Connection conn = DatabaseConnection.getConnection();
+        try (Connection conn = DatabaseConnection.getInstance().getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setString(1, driver.getId());
             stmt.setString(2, driver.getName());

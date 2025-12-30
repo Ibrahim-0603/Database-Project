@@ -16,6 +16,8 @@ public class RouteEditorController extends BaseController {
         try {
             Route r = new Route(idInput.getText(), nameInput.getText(), startInput.getText(), endInput.getText());
             routeDAO.insertRoute(r);
+            switchScene("RouteTable.fxml", event);
+
         } catch (Exception e) {
             showDatabaseError("Insertion failed", e);
         }
@@ -26,6 +28,7 @@ public class RouteEditorController extends BaseController {
         try {
             Route r = new Route(idInput.getText(), nameInput.getText(), startInput.getText(), endInput.getText());
             routeDAO.deleteRoute(r);
+            switchScene("RouteTable.fxml", event);
         } catch (Exception e) {
             showDatabaseError("Delete failed", e);
         }

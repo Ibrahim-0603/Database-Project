@@ -1,23 +1,23 @@
 package com.example.database_gui.GUI_Classes;
 
-import com.example.database_gui.dao.StudentPhoneDAO;
-import com.example.database_gui.model.StudentPhone;
+import com.example.database_gui.dao.DriverPhoneDAO;
+import com.example.database_gui.model.DriverPhone;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 
 public class StudentPhoneEditorController extends BaseController {
     @FXML
-    private TextField studentIdInput, phoneInput;
-    private final StudentPhoneDAO dao = new StudentPhoneDAO();
+    private TextField driverIdInput, phoneInput;
+    private final DriverPhoneDAO dao = new DriverPhoneDAO();
 
     @FXML
     private void handleAdd(ActionEvent event) {
         try {
-            StudentPhone sp = new StudentPhone(studentIdInput.getText(), phoneInput.getText());
-            dao.insertPhone(sp);
+            DriverPhone dp = new DriverPhone(driverIdInput.getText(), phoneInput.getText());
+            dao.insertPhone(dp);
             // You might need to create a phoneTable.fxml if it doesn't exist
-            openEditor(event, "studentTable.fxml");
+            switchScene("StudentPhoneTable.fxml", event);
         } catch (Exception e) {
             showDatabaseError("Insertion failed", e);
         }
@@ -26,9 +26,9 @@ public class StudentPhoneEditorController extends BaseController {
     @FXML
     private void handleDelete(ActionEvent event) {
         try {
-            StudentPhone sp = new StudentPhone(studentIdInput.getText(), phoneInput.getText());
+            DriverPhone sp = new DriverPhone(driverIdInput.getText(), phoneInput.getText());
             dao.deletePhone(sp);
-            openEditor(event, "studentTable.fxml");
+            switchScene("StudentPhoneTable.fxml", event);
         } catch (Exception e) {
             showDatabaseError("Delete failed", e);
         }

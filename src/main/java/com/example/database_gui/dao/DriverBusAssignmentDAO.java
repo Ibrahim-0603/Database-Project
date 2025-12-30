@@ -15,7 +15,7 @@ public class DriverBusAssignmentDAO {
         List<DriverBusAssignment> assignments = new ArrayList<>();
         String sql = "SELECT * FROM DriverBusAssignment WHERE driverID = ?";
 
-        try (Connection conn = DatabaseConnection.getConnection();
+        try (Connection conn = DatabaseConnection.getInstance().getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)){
 
             stmt.setString(1, driverID);
@@ -41,7 +41,7 @@ public class DriverBusAssignmentDAO {
         List<DriverBusAssignment> assignments = new ArrayList<>();
         String sql = "SELECT * FROM DriverBusAssignment WHERE busID = ?";
 
-        try (Connection conn = DatabaseConnection.getConnection();
+        try (Connection conn = DatabaseConnection.getInstance().getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)){
 
             stmt.setString(1, busID);
@@ -66,7 +66,7 @@ public class DriverBusAssignmentDAO {
 
     public void insertAssignment(DriverBusAssignment assignment) {
         String sql = "INSERT INTO DriverBusAssignment (driverID, busID, shift) VALUES (?, ?, ?)";
-        try (Connection conn = DatabaseConnection.getConnection();
+        try (Connection conn = DatabaseConnection.getInstance().getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setString(1, assignment.getDriverID());
             stmt.setString(2, assignment.getBusID());
@@ -79,7 +79,7 @@ public class DriverBusAssignmentDAO {
 
     public void deleteAssignment(DriverBusAssignment assignment) {
         String sql = "DELETE FROM DriverBusAssignment WHERE driverID = ? AND busID = ? AND shift = ?";
-        try (Connection conn = DatabaseConnection.getConnection();
+        try (Connection conn = DatabaseConnection.getInstance().getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setString(1, assignment.getDriverID());
             stmt.setString(2, assignment.getBusID());

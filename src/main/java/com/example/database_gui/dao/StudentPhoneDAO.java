@@ -17,7 +17,7 @@ public class StudentPhoneDAO {
         List<StudentPhone> phoneNumbers = new ArrayList<>();
         String sql = "SELECT * FROM StudentPhone, Student WHERE StudentPhone.studentID = student.studentID";
 
-        try (Connection conn = DatabaseConnection.getConnection();
+        try (Connection conn = DatabaseConnection.getInstance().getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql);
              ResultSet rs = stmt.executeQuery()) {
 
@@ -39,7 +39,7 @@ public class StudentPhoneDAO {
 
     public void insertPhone(StudentPhone sp) {
         String sql = "INSERT INTO StudentPhone (studentID, phoneNumber) VALUES (?, ?)";
-        try (Connection conn = DatabaseConnection.getConnection();
+        try (Connection conn = DatabaseConnection.getInstance().getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setString(1, sp.getStudentID());
             stmt.setString(2, sp.getPhoneNum());
@@ -51,7 +51,7 @@ public class StudentPhoneDAO {
 
     public void deletePhone(StudentPhone sp) {
         String sql = "DELETE FROM StudentPhone WHERE studentID = ? AND phoneNumber = ?";
-        try (Connection conn = DatabaseConnection.getConnection();
+        try (Connection conn = DatabaseConnection.getInstance().getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setString(1, sp.getStudentID());
             stmt.setString(2, sp.getPhoneNum());

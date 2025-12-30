@@ -9,11 +9,11 @@ public class Main extends Application{
     @Override
     public void start(Stage stage) throws Exception {
         FXMLLoader loader = new FXMLLoader(
-                getClass().getResource("/com/example/database_gui/fxml/Main.fxml")
+                getClass().getResource("/com/example/database_gui/fxml/InputUser.fxml")
         );
 
         Scene scene = new Scene(loader.load());
-        stage.setTitle("Students");
+        stage.setTitle("Bus Database System");
         stage.setScene(scene);
         stage.show();
     }

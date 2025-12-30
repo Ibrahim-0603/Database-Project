@@ -21,6 +21,8 @@ public class TripEditorController extends BaseController {
                     LocalTime.parse(arrTimeInput.getText()), LocalTime.parse(depTimeInput.getText()),
                     LocalDate.parse(dateInput.getText()), driverIdInput.getText(), busIdInput.getText());
             tripDAO.insertTrip(t);
+            switchScene("tripTable.fxml", event);
+
         } catch (Exception e) {
             showDatabaseError("Insertion failed", e);
         }
@@ -33,6 +35,7 @@ public class TripEditorController extends BaseController {
                     LocalTime.parse(arrTimeInput.getText()), LocalTime.parse(depTimeInput.getText()),
                     LocalDate.parse(dateInput.getText()), driverIdInput.getText(), busIdInput.getText());
             tripDAO.deleteTrip(t);
+            switchScene("tripTable.fxml", event);
         } catch (Exception e) {
             showDatabaseError("Delete failed", e);
         }

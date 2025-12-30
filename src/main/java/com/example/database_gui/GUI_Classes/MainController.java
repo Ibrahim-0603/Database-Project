@@ -10,24 +10,8 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class MainController {
-    private void switchScene(String fxmlFile, ActionEvent event) {
-        try {
-            Parent root = FXMLLoader.load(
-                    getClass().getResource("/com/example/database_gui/fxml/" + fxmlFile)
-            );
+public class MainController extends BaseController {
 
-            Stage stage = (Stage) ((Node) event.getSource())
-                    .getScene()
-                    .getWindow();
-
-            stage.setScene(new Scene(root));
-            stage.show();
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
     @FXML
     private void openStudents(ActionEvent event) {
 

@@ -17,7 +17,7 @@ public class StudentScheduleDAO {
         List<StudentSchedule> schedules = new ArrayList<>();
         String sql = "SELECT * FROM StudentSchedule WHERE studentID = ?";
 
-        try (Connection conn = DatabaseConnection.getConnection();
+        try (Connection conn = DatabaseConnection.getInstance().getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)){
 
              stmt.setString(1, studentID);
@@ -44,7 +44,7 @@ public class StudentScheduleDAO {
 
     public void insertSchedule(StudentSchedule schedule) {
         String sql = "INSERT INTO StudentSchedule (scheduleID, studentID, dayOfWeek, firstClassTime, lastClassTime) VALUES (?, ?, ?, ?, ?)";
-        try (Connection conn = DatabaseConnection.getConnection();
+        try (Connection conn = DatabaseConnection.getInstance().getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setString(1, schedule.getScheduleID());
             stmt.setString(2, schedule.getStudentID());
@@ -59,7 +59,7 @@ public class StudentScheduleDAO {
 
     public void deleteSchedule(StudentSchedule schedule) {
         String sql = "DELETE FROM StudentSchedule WHERE scheduleID = ? AND studentID = ? AND dayOfWeek = ? AND firstClassTime = ? AND lastClassTime = ?";
-        try (Connection conn = DatabaseConnection.getConnection();
+        try (Connection conn = DatabaseConnection.getInstance().getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setString(1, schedule.getScheduleID());
             stmt.setString(2, schedule.getStudentID());

@@ -17,7 +17,7 @@ public class MaintenanceDatesDAO {
         List<MaintenanceDates> dates = new ArrayList<>();
         String sql = "SELECT * FROM busMaintenance, Bus WHERE busMaintenance.BusId = Bus.BusID";
 
-        try (Connection conn = DatabaseConnection.getConnection();
+        try (Connection conn = DatabaseConnection.getInstance().getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql);
              ResultSet rs = stmt.executeQuery()) {
 
@@ -39,7 +39,7 @@ public class MaintenanceDatesDAO {
 
     public void insertMaintenanceDate(MaintenanceDates md) {
         String sql = "INSERT INTO busMaintenance (BusID, MaintenanceDate) VALUES (?, ?)";
-        try (Connection conn = DatabaseConnection.getConnection();
+        try (Connection conn = DatabaseConnection.getInstance().getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setString(1, md.getBusID());
             stmt.setDate(2, java.sql.Date.valueOf(md.getMaintenanceDate()));
@@ -51,7 +51,7 @@ public class MaintenanceDatesDAO {
 
     public void deleteMaintenanceDate(MaintenanceDates md) {
         String sql = "DELETE FROM busMaintenance WHERE BusID = ? AND MaintenanceDate = ?";
-        try (Connection conn = DatabaseConnection.getConnection();
+        try (Connection conn = DatabaseConnection.getInstance().getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setString(1, md.getBusID());
             stmt.setDate(2, java.sql.Date.valueOf(md.getMaintenanceDate()));

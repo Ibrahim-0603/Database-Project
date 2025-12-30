@@ -20,6 +20,8 @@ public class StudentScheduleEditorController extends BaseController {
                     dayInput.getText(), LocalTime.parse(firstClassInput.getText()),
                     LocalTime.parse(lastClassInput.getText()));
             dao.insertSchedule(s);
+            switchScene("studentScheduleTableTable.fxml", event);
+
         } catch (Exception e) {
             showDatabaseError("Insertion failed", e);
         }
@@ -32,6 +34,7 @@ public class StudentScheduleEditorController extends BaseController {
                     dayInput.getText(), LocalTime.parse(firstClassInput.getText()),
                     LocalTime.parse(lastClassInput.getText()));
             dao.deleteSchedule(s);
+            switchScene("studentScheduleTableTable.fxml", event);
         } catch (Exception e) {
             showDatabaseError("Delete failed", e);
         }

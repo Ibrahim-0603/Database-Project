@@ -18,7 +18,7 @@ public class TripDAO {
         List<Trip> trips= new ArrayList<>();
         String sql = "SELECT * FROM Trip WHERE routeID = ?";
 
-        try (Connection conn = DatabaseConnection.getConnection();
+        try (Connection conn = DatabaseConnection.getInstance().getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)){
 
             stmt.setString(1, routeID);
@@ -46,7 +46,7 @@ public class TripDAO {
     }
     public void insertTrip(Trip trip) {
         String sql = "INSERT INTO Trip (RouteID, TripNum, ArrivalTime, DepartureTime, Date, DriverID, BusID) VALUES (?, ?, ?, ?, ?, ?, ?)";
-        try (Connection conn = DatabaseConnection.getConnection();
+        try (Connection conn = DatabaseConnection.getInstance().getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setString(1, trip.getRouteId());
             stmt.setInt(2, trip.getNumber());
@@ -63,7 +63,7 @@ public class TripDAO {
 
     public void deleteTrip(Trip trip) {
         String sql = "DELETE FROM Trip WHERE RouteID = ? AND TripNum = ? AND ArrivalTime = ? AND DepartureTime = ? AND Date = ? AND DriverID = ? AND BusID = ?";
-        try (Connection conn = DatabaseConnection.getConnection();
+        try (Connection conn = DatabaseConnection.getInstance().getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setString(1, trip.getRouteId());
             stmt.setInt(2, trip.getNumber());

@@ -16,6 +16,8 @@ public class DriverEditorController extends BaseController {
         try {
             Driver d = new Driver(idInput.getText(), nameInput.getText(), licenseInput.getText());
             driverDAO.insertDriver(d);
+            switchScene("driverTable.fxml", event);
+
         } catch (Exception e) {
             showDatabaseError("Insertion failed", e);
         }
@@ -26,6 +28,7 @@ public class DriverEditorController extends BaseController {
         try {
             Driver d = new Driver(idInput.getText(), nameInput.getText(), licenseInput.getText());
             driverDAO.deleteDriver(d);
+            switchScene("driverTable.fxml", event);
         } catch (Exception e) {
             showDatabaseError("Delete failed", e);
         }

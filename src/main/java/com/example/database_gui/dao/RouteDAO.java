@@ -19,7 +19,7 @@ public class RouteDAO {
         List<Route> routes = new ArrayList<>();
         String sql = "SELECT * FROM Route";
 
-        try (Connection conn = DatabaseConnection.getConnection();
+        try (Connection conn = DatabaseConnection.getInstance().getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql);
              ResultSet rs = stmt.executeQuery()) {
 
@@ -43,7 +43,7 @@ public class RouteDAO {
 
     public void insertRoute(Route route) {
         String sql = "INSERT INTO Route (RouteID, routeName, startLocation, endLocation) VALUES (?, ?, ?, ?)";
-        try (Connection conn = DatabaseConnection.getConnection();
+        try (Connection conn = DatabaseConnection.getInstance().getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setString(1, route.getRouteID());
             stmt.setString(2, route.getRouteName());
@@ -57,7 +57,7 @@ public class RouteDAO {
 
     public void deleteRoute(Route route) {
         String sql = "DELETE FROM Route WHERE RouteID = ? AND routeName = ? AND startLocation = ? AND endLocation = ?";
-        try (Connection conn = DatabaseConnection.getConnection();
+        try (Connection conn = DatabaseConnection.getInstance().getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setString(1, route.getRouteID());
             stmt.setString(2, route.getRouteName());

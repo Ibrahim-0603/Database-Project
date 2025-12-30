@@ -18,7 +18,7 @@ public class MaintenanceEditorController extends BaseController {
         try {
             MaintenanceDates md = new MaintenanceDates(busIdInput.getText(), LocalDate.parse(dateInput.getText()));
             dao.insertMaintenanceDate(md);
-            openEditor(event, "MaintenanceDatesTable.fxml");
+            switchScene("MaintenanceDatesTable.fxml", event);
         } catch (Exception e) {
             showDatabaseError("Insertion failed", e);
         }
@@ -29,7 +29,7 @@ public class MaintenanceEditorController extends BaseController {
         try {
             MaintenanceDates md = new MaintenanceDates(busIdInput.getText(), LocalDate.parse(dateInput.getText()));
             dao.deleteMaintenanceDate(md);
-            openEditor(event, "MaintenanceDatesTable.fxml");
+            switchScene("MaintenanceDatesTable.fxml", event);
         } catch (Exception e) {
             showDatabaseError("Delete failed", e);
         }

@@ -6,7 +6,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 
-public class StudentPhoneEditorController extends BaseController {
+public class DriverPhoneEditorController extends BaseController {
     @FXML
     private TextField driverIdInput, phoneInput;
     private final DriverPhoneDAO dao = new DriverPhoneDAO();
@@ -17,7 +17,7 @@ public class StudentPhoneEditorController extends BaseController {
             DriverPhone dp = new DriverPhone(driverIdInput.getText(), phoneInput.getText());
             dao.insertPhone(dp);
             // You might need to create a phoneTable.fxml if it doesn't exist
-            openEditor(event, "driverTable.fxml");
+            switchScene("DriverPhoneTable.fxml", event);
         } catch (Exception e) {
             showDatabaseError("Insertion failed", e);
         }
@@ -28,7 +28,7 @@ public class StudentPhoneEditorController extends BaseController {
         try {
             DriverPhone sp = new DriverPhone(driverIdInput.getText(), phoneInput.getText());
             dao.deletePhone(sp);
-            openEditor(event, "driverTable.fxml");
+            switchScene("DriverPhoneTable.fxml", event);
         } catch (Exception e) {
             showDatabaseError("Delete failed", e);
         }

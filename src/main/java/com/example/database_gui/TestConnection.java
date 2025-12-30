@@ -7,7 +7,7 @@ public class TestConnection {
 
 
     public static void main(String[] args) throws Exception {
-        Connection conn = DatabaseConnection.getConnection();
+        Connection conn = DatabaseConnection.getInstance().getConnection();
         System.out.println("Connected successfully!");
         conn.close();
     }

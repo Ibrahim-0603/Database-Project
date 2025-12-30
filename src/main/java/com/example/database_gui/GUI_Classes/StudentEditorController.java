@@ -19,6 +19,7 @@ public class StudentEditorController extends BaseController{
         try{
             Student s = new Student(idInput.getText(), nameInput.getText(), emailInput.getText(), deptInput.getText(), routeInput.getText());
             studentDAO.insertStudent(s);
+            switchScene("studentTable.fxml", event);
         }
         catch (Exception e){
             showDatabaseError("Insertion failed" ,e);
@@ -30,7 +31,7 @@ public class StudentEditorController extends BaseController{
         try{
             Student condition = new Student(idInput.getText(), nameInput.getText(), emailInput.getText(), deptInput.getText(), routeInput.getText());
             studentDAO.deleteStudent(condition);
-
+            switchScene("studentTable.fxml", event);
         } catch (Exception e){
             throw new DatabaseException("Could not delete student", e);
         }
